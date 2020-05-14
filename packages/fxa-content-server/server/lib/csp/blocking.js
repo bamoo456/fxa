@@ -37,7 +37,8 @@ module.exports = function(config) {
   const PAIRING_SERVER_HTTP = PAIRING_SERVER_WEBSOCKET.replace(/^ws/, 'http');
   const SENTRY_SERVER = 'https://sentry.prod.mozaws.net';
   const SURVEY_GIZMO = 'https://qsurvey.mozilla.com';
-  const SURVEYS = config.get('surveys').map((s) => s.url).map(getOrigin);
+  // create a unique array of origins from survey urls
+  const SURVEYS = [...new Set(config.get('surveys').map((s) => s.url).map(getOrigin))];
   //
   // Double quoted values
   //
