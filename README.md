@@ -37,7 +37,7 @@ The Firefox Accounts (fxa) monorepo
 
    ```sh
    cd fxa
-   npm install
+   yarn install
    npm start
    ```
 

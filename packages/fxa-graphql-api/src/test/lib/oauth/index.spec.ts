@@ -11,17 +11,16 @@ import sinon from 'sinon';
 import { loggerContainerToken, configContainerToken } from '../../../lib/constants';
 
 const sandbox = sinon.createSandbox();
-// tslint:disable-next-line: no-empty
 const mockLogger = { debug: sandbox.stub() };
 Container.set(loggerContainerToken, mockLogger);
 const mockConfig = {
   get: (k: string): string | number => {
     const fakeConfigs: { [key: string]: string | number } = {
       authHeader: 'authorization',
-      'oauth.accessToken.hexLength': 64,
+      'oauth.accessToken.hexLength': 64
     };
     return fakeConfigs[k];
-  },
+  }
 };
 Container.set(configContainerToken, mockConfig);
 
@@ -71,8 +70,8 @@ describe('oauthBearerTokenValidator', () => {
   it('should call next() when validation is successful', () => {
     const req = ({
       headers: {
-        authorization: 'Bearer fc8d07fbbe179b7d75e73172884158053a357692f491cf678540558744f2e4a5',
-      },
+        authorization: 'Bearer fc8d07fbbe179b7d75e73172884158053a357692f491cf678540558744f2e4a5'
+      }
     } as unknown) as Request;
     oauthBearerTokenValidator(req, res, nextFunc);
 

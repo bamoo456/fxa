@@ -17,7 +17,6 @@ const sandbox = sinon.createSandbox();
 const userFetchFn = sandbox.stub();
 Container.set(userLookupFnContainerToken, userFetchFn);
 
-// tslint:disable-next-line: no-empty
 const mockLogger = ({ info: () => {} } as unknown) as Logger;
 
 describe('createServer', () => {
@@ -43,7 +42,7 @@ describe('createServer', () => {
       userFetchFn.returns({ userId: '9001xyz', email: 'testo@example.com' });
       try {
         const context = await (server as any).context({
-          req: { headers: { authorization: 'Bearer lolcatz' } },
+          req: { headers: { authorization: 'Bearer lolcatz' } }
         });
         assert.deepEqual(context.authUser, { userId: '9001xyz', email: 'testo@example.com' });
         assert.equal(context.token, 'Bearer lolcatz');
